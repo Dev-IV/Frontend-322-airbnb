@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airbnb</title>
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)">
+
+  <script>
+    // https://doka.guide/js/match-media/
+    if (matchMedia('(prefers-color-scheme: dark)').media === 'not all') {
+      document.documentElement.style.display = 'none';
+      document.head.insertAdjacentHTML(
+        'beforeend',
+        '<link rel="stylesheet" href="styles/light.css" onload="document.documentElement.style.display=\'\'">'
+      );
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/light.css" media="(prefers-color-scheme: light)">
+  <link rel="stylesheet" href="css/dark.css" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+
+      <div class="flex">
+        <a class="header-logo" href="#">
+          <img src="images/header/logo.svg" alt="logo">
+        </a>
+
+        <nav class="header-nav">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link ml-36px active" href="#">Shop</a>
+          <a class="nav-link ml-36px" href="help.html">Help</a>
+          <a class="nav-link ml-36px" href="#">Blogs</a>
+          <a class="nav-link ml-36px" href="#">About</a>
+          <a class="nav-link ml-36px" href="#">Contact</a>
+        </nav>
+
+        <div class="header-icons flex">
+          <button class="language">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="9" cy="9" r="8" stroke="#222222" stroke-width="1.5" />
+              <ellipse cx="9" cy="9" rx="3" ry="8" stroke="#222222" stroke-width="1.5" />
+              <line x1="1" y1="9.25" x2="17" y2="9.25" stroke="#222222" stroke-width="1.5" />
+            </svg>
+          </button>
+
+          <div class="dropdown">
+            <button class="dropdown__button">
+              <div class="icon">
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="6.55671e-08" y1="1.25" x2="14" y2="1.25" stroke="#222222" stroke-width="1.5" />
+                  <line x1="6.55671e-08" y1="5.25" x2="14" y2="5.25" stroke="#222222" stroke-width="1.5" />
+                  <line x1="6.55671e-08" y1="9.25" x2="14" y2="9.25" stroke="#222222" stroke-width="1.5" />
+                </svg>
+              </div>
+              <div class="avatar">
+                <svg width="28" height="28" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="17" cy="17" r="15" fill="#717171" />
+                  <mask id="mask0_351_652" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="26"
+                    height="26">
+                    <circle cx="17" cy="17" r="12.1875" fill="#737373" />
+                  </mask>
+                  <g mask="url(#mask0_351_652)">
+                    <circle cx="17" cy="15.125" r="6.5625" fill="white" />
+                    <circle cx="17" cy="31.0625" r="11.25" fill="white" />
+                  </g>
+                </svg>
+              </div>
+            </button>
+            <ul class="dropdown__menu">
+              <a href="#" class="dropdown__menu-item">
+                <li>Sign up</li>
+              </a>
+              <a href="#" class="dropdown__menu-item">
+                <li>Log in</li>
+              </a>
+              <div class="menu-item__line"></div>
+              <a href="#" class="dropdown__menu-item">
+                <li>Airbnb your home</li>
+              </a>
+              <a href="help.html" class="dropdown__menu-item">
+                <li>Help</li>
+              </a>
+            </ul>
+          </div>
+
+          <fieldset class="switcher">
+            <input type="checkbox" class="switch">
+            <label for="s2"></label>
+          </fieldset>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Модалка -->
+  <dialog class="modal" id="modal">
+    <button class="button close-button">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
+        focusable="false"
+        style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+        <path d="m6 6 20 20"></path>
+        <path d="m26 6-20 20"></path>
+      </svg>
+    </button>
+    <div class="tabs">
+      <nav class="tabs__list">
+        <button class="tabs__btn tabs__btn--active" data-tabs-path="language">Language</button>
+        <button class="tabs__btn" data-tabs-path="currency">Currency</button>
+      </nav>
+
+      <div class="tabs__content tabs__content--active" data-tabs-target="language">
+        <h3 class="tabs__content--title">Choose a language and region</h3>
+      </div>
+
+      <div class="tabs__content" data-tabs-target="currency">
+        <h3 class="tabs__content--title">Choose a currency</h3>
+      </div>
+    </div>
+  </dialog>
+
+  <main>
+    <section class="shop">
+      <div class="container">
+        <h2 class="title">El Cielo House</h2>
+        <div class="flex">
+          <div class="shop-card">
+            <!-- Slider main container and our classes -->
+            <div class="swiper card-image">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb.webp" alt="image">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb-3.webp" alt="image">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb-4.webp" alt="image">
+                </div>
+              </div>
+              <div class="card-wishlist">
+                <div class="wishlist-rating">
+
+                  <div class="rating-img">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M16 6.12414H9.89333L8 0L6.10667 6.12414H0L4.93333 9.90345L3.06667 16L8 12.2207L12.9333 16L11.04 9.87586L16 6.12414Z"
+                        fill="#FFCE31" />
+                    </svg>
+                  </div>
+                  <span class="rating-amount">4.9</span>
+                </div>
+
+                <svg class="whishlist-heart" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+                  </path>
+                </svg>
+              </div>
+
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="shop-card__content">
+              <h3 class="card-title">Groveland, California</h3>
+
+              <p class="card-subtitle">Private Room & Balcony-Connected...</p>
+
+              <span class="price-prev">$344 night</span>
+              <span class="price-current">$289 night</span>
+
+              <a href="#" target="_blank" class="card-link">Learn more</a>
+            </div>
+          </div>
+
+          <div class="shop-card">
+            <!-- Slider main container and our classes -->
+            <div class="swiper card-image">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb-4.webp" alt="image">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb-3.webp" alt="image">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb-4.webp" alt="image">
+                </div>
+              </div>
+
+              <div class="card-wishlist">
+                <div class="wishlist-rating">
+
+                  <div class="rating-img">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M16 6.12414H9.89333L8 0L6.10667 6.12414H0L4.93333 9.90345L3.06667 16L8 12.2207L12.9333 16L11.04 9.87586L16 6.12414Z"
+                        fill="#FFCE31" />
+                    </svg>
+                  </div>
+                  <span class="rating-amount">4.9</span>
+                </div>
+
+                <svg class="whishlist-heart" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+                  </path>
+                </svg>
+              </div>
+
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="shop-card__content">
+              <h3 class="card-title">Groveland, California</h3>
+
+              <p class="card-subtitle">Private Room & Balcony-Connected...</p>
+
+              <span class="price-prev">$344 night</span>
+              <span class="price-current">$289 night</span>
+
+              <a href="#" target="_blank" class="card-link">Learn more</a>
+            </div>
+          </div>
+
+          <div class="shop-card">
+            <!-- Slider main container and our classes -->
+            <div class="swiper card-image">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb-2.webp" alt="image">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb-3.webp" alt="image">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb-4.webp" alt="image">
+                </div>
+              </div>
+
+              <div class="card-wishlist">
+                <div class="wishlist-rating">
+
+                  <div class="rating-img">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M16 6.12414H9.89333L8 0L6.10667 6.12414H0L4.93333 9.90345L3.06667 16L8 12.2207L12.9333 16L11.04 9.87586L16 6.12414Z"
+                        fill="#FFCE31" />
+                    </svg>
+                  </div>
+                  <span class="rating-amount">4.9</span>
+                </div>
+
+                <svg class="whishlist-heart" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+                  </path>
+                </svg>
+              </div>
+
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="shop-card__content">
+              <h3 class="card-title">Groveland, California</h3>
+
+              <p class="card-subtitle">Private Room & Balcony-Connected...</p>
+
+              <span class="price-prev">$344 night</span>
+              <span class="price-current">$289 night</span>
+
+              <a href="#" target="_blank" class="card-link">Learn more</a>
+            </div>
+          </div>
+
+          <div class="shop-card">
+            <!-- Slider main container and our classes -->
+            <div class="swiper card-image">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb-3.webp" alt="image">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb-3.webp" alt="image">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/shop/airbnb-4.webp" alt="image">
+                </div>
+              </div>
+
+              <div class="card-wishlist">
+                <div class="wishlist-rating">
+
+                  <div class="rating-img">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M16 6.12414H9.89333L8 0L6.10667 6.12414H0L4.93333 9.90345L3.06667 16L8 12.2207L12.9333 16L11.04 9.87586L16 6.12414Z"
+                        fill="#FFCE31" />
+                    </svg>
+                  </div>
+                  <span class="rating-amount">4.9</span>
+                </div>
+
+                <svg class="whishlist-heart" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+                  </path>
+                </svg>
+              </div>
+
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="shop-card__content">
+              <h3 class="card-title">Groveland, California</h3>
+
+              <p class="card-subtitle">Private Room & Balcony-Connected...</p>
+
+              <span class="price-prev">$344 night</span>
+              <span class="price-current">$289 night</span>
+
+              <a href="#" target="_blank" class="card-link">Learn more</a>
+            </div>
+          </div>
+        </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-top">
+      <div class="container footer-flex">
+        <div class="flex-container">
+          <h3 class="title-footer">Support</h3>
+          <a target="_blank" class="support" href="#">Help Center</a>
+          <a target="_blank" class="support" href="#">Safety information</a>
+          <a target="_blank" class="support" href="#">Cancellation options</a>
+          <a target="_blank" class="support" href="#">Our COVID-19 Response</a>
+          <a target="_blank" class="support" href="#">Supporting people with disabilities</a>
+          <a target="_blank" class="support" href="#">Report a neighborhoood concern</a>
+        </div>
+        <div class="flex-container">
+          <h3 class="title-footer">Community</h3>
+          <a target="_blank" class="support" href="#">Airbnb.org: disaster relief housing</a>
+          <a target="_blank" class="support" href="#">Support: Afghan refugees</a>
+          <a target="_blank" class="support" href="#">Celebrating diversity & belonging</a>
+          <a target="_blank" class="support" href="#">Combating discriminatino</a>
+        </div>
+        <div class="flex-container">
+          <h3 class="title-footer">Hosting</h3>
+          <a target="_blank" class="support" href="#">Try hosting</a>
+          <a target="_blank" class="support" href="#">AirCover: protection for Hosts</a>
+          <a target="_blank" class="support" href="#">Explore hosting resources</a>
+          <a target="_blank" class="support" href="#">Visit our community forum</a>
+          <a target="_blank" class="support" href="#">How to host responsibly</a>
+        </div>
+        <div class="flex-container">
+          <h3 class="title-footer">About</h3>
+          <a target="_blank" class="support" href="#">Newsroom</a>
+          <a target="_blank" class="support" href="#">Learn about new features</a>
+          <a target="_blank" class="support" href="#">Letter from our founders</a>
+          <a target="_blank" class="support" href="#">Careers</a>
+          <a target="_blank" class="support" href="#">Investors</a>
+          <a target="_blank" class="support" href="#">Airbnb Luxe</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container flex">
+        <div class="flex-container-left">
+          <a class="nav-link-footer" href="#">© 2022 Airbnb, Inc.</a>
+          <a class="nav-link-footer" href="#">Privacy</a>
+          <a class="nav-link-footer" href="#">Terms</a>
+          <a class="nav-link-footer" href="#">Sitemap</a>
+        </div>
+
+        <div class="flex-container-right">
+          <a class="globe" href="#">
+            <img src="images/footer/language-icon.svg" alt="language">
+            English (US)
+          </a>
+          <a class="currency social-media" href="#">
+            <img src="images/footer/icon-dollar.svg" alt="dollar">
+          </a>
+          <a class="social-media" href="#">
+            <img src="images/footer/facebook-icon.svg" alt="facebook">
+          </a>
+          <a class="social-media" href="#">
+            <img src="images/footer/twitter-icon.svg" alt="twitter">
+          </a>
+          <a class="social-media" href="#">
+            <img src="images/footer/instagram-icon.svg" alt="instagram">
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="lib/swiper.js"></script>
+  <script src="js/theme-switcher.js"></script>
+  <script src="js/shop.js"></script>
+
+</body>
+
+</html>
