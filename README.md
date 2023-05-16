@@ -6,7 +6,7 @@
 **First time**
 
 ```bash
-git clone https://github.com/iliafilimonov1/Frontend-322-airbnb.git
+git clone https://github.com/Dev-IV/Frontend-322-airbnb.git
 cd frontend-322-airbnb
 npm install
 ```
